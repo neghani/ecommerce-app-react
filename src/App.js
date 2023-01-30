@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import Header from "./components/Header";
+import AddCourse from "./components/AddCourse";
+import CourseList from "./components/CourseList";
+import { useState } from "react";
 
 function App() {
+  const [courses, setCourses] = useState([
+    {
+      id: "rand32434",
+      title: "HTML for beginner",
+      duration: "4",
+      author: "Ganesh",
+      price: 350,
+    },
+    {
+      id: "rand32434",
+      title: "HTML for beginner",
+      duration: "4",
+      author: "Ganesh",
+      price: 350,
+    },
+  ]);
+
+  function handleSaveCourse(newCourse){
+    setCourses([...courses,newCourse])
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <AddCourse onSave={handleSaveCourse} />
+      <CourseList courses={courses} />
+    </>
   );
 }
 
