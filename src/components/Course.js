@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../App";
 
-const Course = ({ course }) => {
+const Course = ({ course,courseIndex}) => {
+  const { editCourse, deleteCourse, toggleAddCourseComponent } =
+    useContext(AppContext);
   return (
     <div className="card">
       <img
@@ -20,8 +23,18 @@ const Course = ({ course }) => {
           </li>
         </ul>
         <a className="btn btn-primary">Buy for ${course.price}</a>
-        <a className="btn">Edit </a>
-        <a className="btn">Delete </a>
+        <a
+          className="btn"
+          onClick={() => {
+            editCourse(course.id);
+            toggleAddCourseComponent();
+          }}
+        >
+          Edit
+        </a>
+        <a className="btn" onClick={deleteCourse}>
+          Delete{" "}
+        </a>
       </div>
     </div>
   );

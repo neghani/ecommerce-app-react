@@ -1,0 +1,33 @@
+.sticky-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: bisque;
+  right: 0;
+  margin: 0px;
+}
+.sticky-container h5{
+    margin: 0;
+    margin-top: 20px;
+
+}
+
+.plus-icon{
+    font-size: 30px;
+    font-weight: bolder;
+    color: #e4e4e4;
+    
+}
+.circle{
+    border: 1px solid #e4e4e4;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+
+}
+.make-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

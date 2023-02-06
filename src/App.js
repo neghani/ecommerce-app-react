@@ -3,9 +3,11 @@ import "./App.css";
 import Header from "./components/Header";
 import AddCourse from "./components/AddCourse";
 import CourseList from "./components/CourseList";
-import { useState } from "react";
-
+import { useState, createContext } from "react";
+export const AppContext = createContext(null);
 function App() {
+  const [toggleAddCourse, setToggleAddCourse] = useState(false);
+
   const [courses, setCourses] = useState([
     {
       id: "rand32434",
@@ -15,7 +17,7 @@ function App() {
       price: 350,
     },
     {
-      id: "rand32434",
+      id: "rand3234",
       title: "HTML for beginner",
       duration: "4",
       author: "Ganesh",
@@ -23,15 +25,32 @@ function App() {
     },
   ]);
 
-  function handleSaveCourse(newCourse){
-    setCourses([...courses,newCourse])
+  function editCourse(id) {
+    console.log(id);
   }
+  function deleteCourse() {
+    console.log("delete clicked");
+  }
+  function toggleAddCourseComponent() {
+    setToggleAddCourse(!toggleAddCourse);
+  }
+  function handleSaveCourse(newCourse) {
+    setCourses([...courses, newCourse]);
+  }
+  const valuestoPass = {
+    courses,
+    setCourses,
+    editCourse,
+    deleteCourse,
+    toggleAddCourseComponent,
+    handleSaveCourse,
+  };
   return (
-    <>
+    <AppContext.Provider value={valuestoPass}>
       <Header />
-      <AddCourse onSave={handleSaveCourse} />
-      <CourseList courses={courses} />
-    </>
+      <CourseList />
+      {toggleAddCourse ? <AddCourse /> : null}
+    </AppContext.Provider>
   );
 }
 
